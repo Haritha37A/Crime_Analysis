@@ -1,9 +1,41 @@
-# Crime_Analysis This project performs an in-depth analysis of crime data in Los Angeles (2020-2023) using Streamlit for visualization.
-## Project Structure
-- **data/**: Folder for raw datasets.
-- **data_analysis.ipynb**: Notebook for data cleaning and EDA.
-- **app.py**: Streamlit app file for the dashboard.
-- **requirements.txt**: List of required libraries.
-  ## Installation
-1. Clone the repository:-git clone https://github.com/Haritha37A/Crime_Analysis.git
-2. 
+Los Angeles Crime Data Dashboard (2020-2023)
+This project is a data dashboard built with Streamlit to visualize crime data in Los Angeles from 2020 to 2023. The dashboard enables users to explore crime trends, distributions, and hotspots across the city, providing valuable insights through charts, maps, and data filtering options.
+
+Dataset
+The dataset used is "Crime_Data_from_2020_to_Present.csv". It includes information about:
+
+Dates of crime occurrence and reporting
+Area names and geographic coordinates
+Victim details (age, sex)
+Crime details (weapon type, crime frequency)
+Project Features
+Data Preview: View the initial dataset and missing value information.
+Filters: Select data by month, area, age group, and weapon type.
+Charts:
+Crime Trend Over Time: Shows crime patterns over months and years.
+Crime Distribution by Area: Displays the count of crimes per area.
+Age-Wise and Weapon-Wise Distributions: Shows crimes by victim age group and by weapon type.
+Correlation Matrix: Displays relationships between numeric variables.
+Maps:
+Crime Hotspots: Shows crime locations on a map.
+Crime Frequency Map: Highlights areas with high, medium, or low crime frequency.
+How to Run the Project
+Install the Required Libraries:
+
+Make sure you have Python 3.12 installed.
+Install dependencies with:
+bash
+Copy code
+pip install pandas streamlit matplotlib seaborn folium streamlit_folium
+Run the Streamlit App:
+
+Place the dataset file "Crime_Data_from_2020_to_Present.csv" in the project directory.
+Run the app with:
+bash
+Copy code
+streamlit run app.py
+Explore the Dashboard:
+
+Open the app in your browser (usually at http://localhost:8501) and use the filters to explore the crime data.
+Acknowledgments
+Data Source: Kaggle - Los Angeles Crime Data (2020-2023)
