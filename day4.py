@@ -178,7 +178,7 @@ high_threshold = crime_counts.quantile(0.67)
 medium_threshold = crime_counts.quantile(0.33)
 
 # Assign crime frequency category
-filtered_df['crime_frequency'] = filtered_df['area_name'].apply(
+filtered_df.loc[:, 'crime_frequency'] = filtered_df['area_name'].apply(
     lambda name: 'high' if crime_counts[name] >= high_threshold
     else 'medium' if crime_counts[name] >= medium_threshold else 'low'
 )
