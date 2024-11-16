@@ -36,6 +36,11 @@ The dataset used is **"Crime_Data_from_2020_to_Present.csv"**. It includes infor
      ```bash
      streamlit run app.py
      ```
+     ## Deployed App
+
+You can access the deployed Crime Analysis app here:
+
+[Crime Analysis App](https://crimeanalysis-n5yuxqmsy7z7rb9vgzxken.streamlit.app/)
 
 3. **Explore the Dashboard**:
    - Open the app in your browser (usually at [http://localhost:8511](http://localhost:8511)) and use the filters to explore the crime data.
