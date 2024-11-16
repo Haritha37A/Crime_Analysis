@@ -171,17 +171,39 @@ def get_color(frequency):
         return 'green'
 
 # Calculate crime frequency
-center_lat = filtered_df['latitude'].mean()
-center_lon = filtered_df['longitude'].mean()
-crime_counts = filtered_df['area_name'].value_counts()
-high_threshold = crime_counts.quantile(0.67)
-medium_threshold = crime_counts.quantile(0.33)
+if filtered_df.empty or 'area_name' not in filtered_df.columns:
+    st.error("Filtered DataFrame is empty or missing 'area_name' column.")
+else:
+    center_lat = filtered_df['latitude'].mean()
+    center_lon = filtered_df['longitude'].mean()
 
-# Assign crime frequency category
-filtered_df.loc[:, 'crime_frequency'] = filtered_df['area_name'].apply(
-    lambda name: 'high' if crime_counts[name] >= high_threshold
-    else 'medium' if crime_counts[name] >= medium_threshold else 'low'
-)
+    # Calculate crime counts and thresholds
+    crime_counts = filtered_df['area_name'].value_counts()
+    high_threshold = crime_counts.quantile(0.67)
+    medium_threshold = crime_counts.quantile(0.33)
+
+    # Define a safe function for crime frequency
+    def get_crime_frequency(name):
+        if name in crime_counts:
+            if crime_counts[name] >= high_threshold:
+                return 'high'
+            elif crime_counts[name] >= medium_threshold:
+                return 'medium'
+            else:
+                return 'low'
+        else:
+            return 'low'
+
+    # Assign the crime_frequency column
+    filtered_df = filtered_df.copy()
+    filtered_df['crime_frequency'] = filtered_df['area_name'].apply(get_crime_frequency)
+
+    # Debug outputs
+    st.write("Crime Counts:", crime_counts)
+    st.write("High Threshold:", high_threshold)
+    st.write("Medium Threshold:", medium_threshold)
+    st.write("Filtered DataFrame (With Crime Frequency):", filtered_df.head())
+
 
 # Map crime frequencies
 m = folium.Map(location=[center_lat, center_lon], zoom_start=12)
